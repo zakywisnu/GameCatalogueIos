@@ -47,21 +47,20 @@ extension GameRepository: GameRepositoryProtocol{
         
     }
     
-        func getDetailGame(by id: Int) -> Observable<GameDetailModel> {
-            return self.local.getDetailGame(id: id)
-                .map{ GameDetailMapper.mapDetailEntityToDomain(input: $0)}
-                .filter{!$0.name.isEmpty}
-                .ifEmpty(switchTo: self.remote.getDetailGame(id: id)
-                            .map{ GameDetailMapper.mapDetailGameResponseToEntity(input: $0)}
-                            .flatMap{self.local.addDetailGame(from: $0)}
-                            .filter{$0}
-                            .flatMap{ _ in self.local.getDetailGame(id: id)
-                                .map{ GameDetailMapper.mapDetailEntityToDomain(input: $0)}
-                            }
-                )
-
-        }
-
+    func getDetailGame(by id: Int) -> Observable<GameDetailModel> {
+        return self.local.getDetailGame(id: id)
+            .map{ GameDetailMapper.mapDetailEntityToDomain(input: $0)}
+            .ifEmpty(switchTo: self.remote.getDetailGame(id: id)
+                        .map{ GameDetailMapper.mapDetailGameResponseToEntity(input: $0)}
+                        .flatMap{self.local.addDetailGame(from: $0)}
+                        .filter{$0}
+                        .flatMap{ _ in self.local.getDetailGame(id: id)
+                            .map{ GameDetailMapper.mapDetailEntityToDomain(input: $0)}
+                        }
+            )
+        
+    }
+    
     
     func updateFavoriteGame(by id: Int) -> Observable<GameDetailModel> {
         return self.local.updateFavoriteGame(by: id)
