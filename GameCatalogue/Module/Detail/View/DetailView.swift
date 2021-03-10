@@ -49,7 +49,9 @@ extension DetailView {
                 ZStack {
                     WebImage(url: URL(string: presenter.game.image))
                         .resizable()
-                        .aspectRatio(contentMode: .fit)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 200)
                     VStack(alignment: .trailing){
                         if presenter.game.favorite {
                             Image(systemName: "heart.fill")
@@ -66,7 +68,7 @@ extension DetailView {
                                 }
                         }
                     }
-                    .offset(x: 140,y: 115)
+                    .offset(x: 140,y: 110)
                 }
                 
                 HStack{
@@ -103,7 +105,7 @@ extension DetailView {
                 .padding(.horizontal, 10)
                 
                 
-                Text(presenter.game.description.replacingOccurrences(of: "<[^>]+>", with: "",options: .regularExpression, range: nil))
+                Text(presenter.game.gameDescription.replacingOccurrences(of: "<[^>]+>", with: "",options: .regularExpression, range: nil))
                     .padding()
                     .font(.system(size: 15, weight: .light, design: .default))
                     .frame(maxWidth: screen.width - 32)

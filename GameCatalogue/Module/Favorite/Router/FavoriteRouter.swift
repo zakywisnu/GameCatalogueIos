@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class FavoriteRouter{
-    func makeDetailView(for game: GameDetailModel) -> some View{
+    func makeDetailView(for game: GameModel) -> some View{
         let detailUseCase = Injection.init().provideDetail(by: game.id)
         let presenter = DetailPresenter(detailUseCase: detailUseCase)
         return DetailView(presenter: presenter)

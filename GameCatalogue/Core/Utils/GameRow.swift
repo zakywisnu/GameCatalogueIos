@@ -49,7 +49,9 @@ struct GameRow_Previews: PreviewProvider {
                                  released: "2013-09-17",
                                  rating: 4.48,
                                  image: "https://media.rawg.io/media/games/84d/84da2ac3fdfc6507807a1808595afb12.jpg",
-                                playtime: 69)
+                                playtime: 69,
+                                gameDescription: "", favorite: false
+        )
         )
     }
 }

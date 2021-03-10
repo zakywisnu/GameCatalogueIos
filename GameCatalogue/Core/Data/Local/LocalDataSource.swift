@@ -11,12 +11,11 @@ import RealmSwift
 
 protocol LocalDataSourceProtocol: class {
     func getListGame() -> Observable<[GameEntity]>
-    func getDetailGame(id: Int) -> Observable<GameDetailEntity>
+    func getDetailGame(id: Int) -> Observable<GameEntity>
     func addListGame(from listGame: [GameEntity]) -> Observable<Bool>
-    func addDetailGame(from detailGame: GameDetailEntity) -> Observable<Bool>
-    func getFavoriteGame() -> Observable<[GameDetailEntity]>
-    func updateFavoriteGame(by idGame: Int) -> Observable<GameDetailEntity>
-//    func updateDetailGame(by idGame: Int, from game: GameDetailEntity) -> Observable<Bool>
+    func addDetailGame(from detailGame: GameEntity) -> Observable<Bool>
+    func getFavoriteGame() -> Observable<[GameEntity]>
+    func updateFavoriteGame(by idGame: Int) -> Observable<GameEntity>
 }
 
 final class LocalDataSource: NSObject {
@@ -31,9 +30,6 @@ final class LocalDataSource: NSObject {
 }
 
 extension LocalDataSource: LocalDataSourceProtocol {
-//    func updateDetailGame(by idGame: Int, from game: GameDetailEntity) -> Observable<Bool> {
-//        <#code#>
-//    }
     
     func getListGame() -> Observable<[GameEntity]> {
         return Observable<[GameEntity]>.create{ observer in
@@ -51,14 +47,14 @@ extension LocalDataSource: LocalDataSourceProtocol {
         }
     }
     
-    func getFavoriteGame() -> Observable<[GameDetailEntity]> {
-        return Observable<[GameDetailEntity]>.create{ observer in
+    func getFavoriteGame() -> Observable<[GameEntity]> {
+        return Observable<[GameEntity]>.create{ observer in
             if let realm = self.realm {
-                let games: Results<GameDetailEntity> = {
-                    realm.objects(GameDetailEntity.self)
-                        .sorted(byKeyPath: "name", ascending: true)
+                let games: Results<GameEntity> = {
+                    realm.objects(GameEntity.self)
+                        .filter("favorite = \(true)")
                 }()
-                observer.onNext(games.toArray(ofType: GameDetailEntity.self))
+                observer.onNext(games.toArray(ofType: GameEntity.self))
                 observer.onCompleted()
             } else {
                 observer.onError(DatabaseError.invalidInstance)
@@ -68,11 +64,11 @@ extension LocalDataSource: LocalDataSourceProtocol {
     }
     
     
-    func getDetailGame(id: Int) -> Observable<GameDetailEntity> {
-        return Observable<GameDetailEntity>.create{ observer in
+    func getDetailGame(id: Int) -> Observable<GameEntity> {
+        return Observable<GameEntity>.create{ observer in
             if let realm = self.realm {
-                let games: Results<GameDetailEntity> = {
-                    realm.objects(GameDetailEntity.self)
+                let games: Results<GameEntity> = {
+                    realm.objects(GameEntity.self)
                         .filter("id = \(id)")
                 }()
                 if let game = games.first {
@@ -109,7 +105,7 @@ extension LocalDataSource: LocalDataSourceProtocol {
         }
     }
     
-    func addDetailGame(from detailGame: GameDetailEntity) -> Observable<Bool> {
+    func addDetailGame(from detailGame: GameEntity) -> Observable<Bool> {
         return Observable<Bool>.create{ observer in
             if let realm = self.realm {
                 do {
@@ -129,10 +125,10 @@ extension LocalDataSource: LocalDataSourceProtocol {
     }
     
     
-    func updateFavoriteGame(by idGame: Int) -> Observable<GameDetailEntity> {
-        return Observable<GameDetailEntity>.create{ observer in
+    func updateFavoriteGame(by idGame: Int) -> Observable<GameEntity> {
+        return Observable<GameEntity>.create{ observer in
             if let realm = self.realm, let gameEntity = {
-                realm.objects(GameDetailEntity.self).filter("id = \(idGame)")
+                realm.objects(GameEntity.self).filter("id = \(idGame)")
             }().first {
                 do {
                     try realm.write{

@@ -16,7 +16,6 @@ struct GameDetailResponse: Codable {
         case image = "background_image"
         case rating = "rating"
         case playtime = "playtime"
-//        case tags = "tags"
     }
     let id: Int?
     let name: String?
@@ -25,5 +24,4 @@ struct GameDetailResponse: Codable {
     let image: String?
     let rating: Double?
     let playtime: Int?
-//    let tags: [TagsResponse]
 }

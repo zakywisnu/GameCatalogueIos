@@ -34,7 +34,10 @@ final class GameMapper {
                 released: result.released,
                 rating: result.rating,
                 image: result.image,
-                playtime: result.playtime)
+                playtime: result.playtime,
+                gameDescription: result.gameDescription,
+                favorite: result.favorite
+            )
         }
     }
 }
