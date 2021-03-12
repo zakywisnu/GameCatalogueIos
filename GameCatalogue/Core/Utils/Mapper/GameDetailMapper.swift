@@ -12,9 +12,12 @@ final class GameDetailMapper {
         input gameDetail: GameDetailResponse
     ) -> GameEntity {
         let gameEntity = GameEntity()
+<<<<<<< HEAD
         var date: Date? = Date()
         date = gameDetail.released?.toDate()
         let new_date = date?.toString()
+=======
+>>>>>>> 91a4024c0c8c2652a6ce6aed8ed61066d08a4001
         gameEntity.id = gameDetail.id ?? 0
         gameEntity.name = gameDetail.name ?? ""
         gameEntity.image = gameDetail.image ?? ""

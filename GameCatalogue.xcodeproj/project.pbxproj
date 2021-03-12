@@ -50,7 +50,10 @@
 		9AA0B7E825EBA22400AF6ACA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA0B7E725EBA22400AF6ACA /* HomeView.swift */; };
 		9AA0B7EF25EBD3A200AF6ACA /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA0B7EE25EBD3A200AF6ACA /* FavoriteRow.swift */; };
 		9AEB56B825F39D04006C74EC /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB56B725F39D04006C74EC /* Date+Ext.swift */; };
+<<<<<<< HEAD
 		9AF690DE25FBB8D700536E88 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF690DD25FBB8D700536E88 /* String+Ext.swift */; };
+=======
+>>>>>>> 91a4024c0c8c2652a6ce6aed8ed61066d08a4001
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,7 +95,10 @@
 		9AA0B7E725EBA22400AF6ACA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9AA0B7EE25EBD3A200AF6ACA /* FavoriteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRow.swift; sourceTree = "<group>"; };
 		9AEB56B725F39D04006C74EC /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		9AF690DD25FBB8D700536E88 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+=======
+>>>>>>> 91a4024c0c8c2652a6ce6aed8ed61066d08a4001
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,7 +300,10 @@
 			children = (
 				9A980D5B25E8033C0028414B /* CustomError+Ext.swift */,
 				9AEB56B725F39D04006C74EC /* Date+Ext.swift */,
+<<<<<<< HEAD
 				9AF690DD25FBB8D700536E88 /* String+Ext.swift */,
+=======
+>>>>>>> 91a4024c0c8c2652a6ce6aed8ed61066d08a4001
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -536,7 +545,10 @@
 				9AEB56B825F39D04006C74EC /* Date+Ext.swift in Sources */,
 				9A980D4325E8015C0028414B /* Injection.swift in Sources */,
 				9AA0B7D225EB91A400AF6ACA /* FavoritePresenter.swift in Sources */,
+<<<<<<< HEAD
 				9AF690DE25FBB8D700536E88 /* String+Ext.swift in Sources */,
+=======
+>>>>>>> 91a4024c0c8c2652a6ce6aed8ed61066d08a4001
 				9A980D4025E7FF410028414B /* LocalDataSource.swift in Sources */,
 				9A980D5625E802530028414B /* GameMapper.swift in Sources */,
 				9AA0B7D525EB91AD00AF6ACA /* DetailPresenter.swift in Sources */,
