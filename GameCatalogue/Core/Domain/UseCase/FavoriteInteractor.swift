@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol FavoriteUseCase {
-    func getFavoriteGame() -> Observable<[GameDetailModel]>
+    func getFavoriteGame() -> Observable<[GameModel]>
 }
 
 class FavoriteInteractor: FavoriteUseCase {
@@ -20,7 +20,7 @@ class FavoriteInteractor: FavoriteUseCase {
         self.repository = repository
     }
     
-    func getFavoriteGame() -> Observable<[GameDetailModel]> {
+    func getFavoriteGame() -> Observable<[GameModel]> {
         return repository.getFavoriteGame()
     }
     

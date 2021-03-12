@@ -24,7 +24,7 @@ struct GameResponse: Codable {
     let id: Int?
     let name: String?
     let released: String?
-    let rating: Float?
+    let rating: Double?
     let image: String?
     let playtime: Int?
 }

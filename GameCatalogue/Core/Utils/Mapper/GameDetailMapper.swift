@@ -10,46 +10,48 @@ import Foundation
 final class GameDetailMapper {
     static func mapDetailGameResponseToEntity(
         input gameDetail: GameDetailResponse
-    ) -> GameDetailEntity {
-        let gameEntity = GameDetailEntity()
+    ) -> GameEntity {
+        let gameEntity = GameEntity()
+        var date: Date? = Date()
+        date = gameDetail.released?.toDate()
+        let new_date = date?.toString()
         gameEntity.id = gameDetail.id ?? 0
         gameEntity.name = gameDetail.name ?? ""
         gameEntity.image = gameDetail.image ?? ""
         gameEntity.playtime = gameDetail.playtime ?? 0
         gameEntity.gameDescription = gameDetail.gameDescription ?? ""
         gameEntity.rating = gameDetail.rating ?? 0
-        gameEntity.released = gameDetail.released ?? ""
+        gameEntity.released = new_date ?? ""
         
         return gameEntity
     }
     
     static func mapDetailEntityToDomain(
-        input gameDetail: GameDetailEntity
-    ) -> GameDetailModel {
-        return GameDetailModel(
+        input gameDetail: GameEntity
+    ) -> GameModel {
+        return GameModel(
             id: gameDetail.id,
             name: gameDetail.name,
-            description: gameDetail.gameDescription,
             released: gameDetail.released,
-            image: gameDetail.image,
             rating: gameDetail.rating,
+            image: gameDetail.image,
             playtime: gameDetail.playtime,
+            gameDescription: gameDetail.gameDescription,
             favorite: gameDetail.favorite
         )
     }
-    
     static func mapFavoriteEntityToDomain(
-        input gameDetail: [GameDetailEntity]
-    ) -> [GameDetailModel] {
+        input gameDetail: [GameEntity]
+    ) -> [GameModel] {
         return gameDetail.map{ result in
-            return GameDetailModel(
+            return GameModel(
                 id: result.id,
                 name: result.name,
-                description: result.gameDescription,
                 released: result.released,
-                image: result.image,
                 rating: result.rating,
+                image: result.image,
                 playtime: result.playtime,
+                gameDescription: result.gameDescription,
                 favorite: result.favorite
             )
         }

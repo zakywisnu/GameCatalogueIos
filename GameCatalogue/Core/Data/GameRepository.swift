@@ -10,9 +10,9 @@ import RxSwift
 
 protocol GameRepositoryProtocol {
     func getListGame() -> Observable<[GameModel]>
-    func getDetailGame(by id: Int) -> Observable<GameDetailModel>
-    func updateFavoriteGame(by id: Int) -> Observable<GameDetailModel>
-    func getFavoriteGame() -> Observable<[GameDetailModel]>
+    func getDetailGame(by id: Int) -> Observable<GameModel>
+    func updateFavoriteGame(by id: Int) -> Observable<GameModel>
+    func getFavoriteGame() -> Observable<[GameModel]>
 }
 
 final class GameRepository: NSObject {
@@ -47,9 +47,10 @@ extension GameRepository: GameRepositoryProtocol{
         
     }
     
-    func getDetailGame(by id: Int) -> Observable<GameDetailModel> {
+    func getDetailGame(by id: Int) -> Observable<GameModel> {
         return self.local.getDetailGame(id: id)
             .map{ GameDetailMapper.mapDetailEntityToDomain(input: $0)}
+            .filter{ !$0.gameDescription.isEmpty}
             .ifEmpty(switchTo: self.remote.getDetailGame(id: id)
                         .map{ GameDetailMapper.mapDetailGameResponseToEntity(input: $0)}
                         .flatMap{self.local.addDetailGame(from: $0)}
@@ -62,12 +63,12 @@ extension GameRepository: GameRepositoryProtocol{
     }
     
     
-    func updateFavoriteGame(by id: Int) -> Observable<GameDetailModel> {
+    func updateFavoriteGame(by id: Int) -> Observable<GameModel> {
         return self.local.updateFavoriteGame(by: id)
             .map{ GameDetailMapper.mapDetailEntityToDomain(input: $0)}
     }
     
-    func getFavoriteGame() -> Observable<[GameDetailModel]> {
+    func getFavoriteGame() -> Observable<[GameModel]> {
         return self.local.getFavoriteGame()
             .map{ GameDetailMapper.mapFavoriteEntityToDomain(input: $0)}
     }

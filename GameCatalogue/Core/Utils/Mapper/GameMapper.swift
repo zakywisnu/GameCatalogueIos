@@ -12,13 +12,16 @@ final class GameMapper {
         input listGame: [GameResponse]
     ) -> [GameEntity] {
         return listGame.map { result in
+            var date: Date? = Date()
+            date = result.released?.toDate()
+            let new_date = date?.toString()
             let gameEntity = GameEntity()
             gameEntity.id = result.id ?? 0
             gameEntity.name = result.name ?? ""
             gameEntity.image = result.image ?? ""
             gameEntity.playtime = result.playtime ?? 0
             gameEntity.rating = result.rating ?? 0
-            gameEntity.released = result.released ?? ""
+            gameEntity.released = new_date ?? ""
             
             return gameEntity
         }
@@ -34,7 +37,10 @@ final class GameMapper {
                 released: result.released,
                 rating: result.rating,
                 image: result.image,
-                playtime: result.playtime)
+                playtime: result.playtime,
+                gameDescription: result.gameDescription,
+                favorite: result.favorite
+            )
         }
     }
 }

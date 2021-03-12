@@ -9,8 +9,8 @@ import Foundation
 import RxSwift
 
 protocol GameDetailUseCase {
-    func getMovieDetail() -> Observable<GameDetailModel>
-    func updateFavoriteGame() -> Observable<GameDetailModel>
+    func getMovieDetail() -> Observable<GameModel>
+    func updateFavoriteGame() -> Observable<GameModel>
 }
 
 class GameDetailInteractor: GameDetailUseCase {
@@ -23,11 +23,11 @@ class GameDetailInteractor: GameDetailUseCase {
         self.repository = repository
     }
     
-    func getMovieDetail() -> Observable<GameDetailModel> {
+    func getMovieDetail() -> Observable<GameModel> {
         return repository.getDetailGame(by: id)
     }
     
-    func updateFavoriteGame() -> Observable<GameDetailModel> {
+    func updateFavoriteGame() -> Observable<GameModel> {
         return repository.updateFavoriteGame(by: id)
     }
 }

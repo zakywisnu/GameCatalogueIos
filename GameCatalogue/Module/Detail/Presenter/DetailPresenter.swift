@@ -15,15 +15,16 @@ class DetailPresenter: ObservableObject {
     @Published var isLoading = false
     @Published var isError = false
     @Published var errorMessage = ""
-    @Published var game = GameDetailModel(
+    @Published var game = GameModel(
         id: 0,
         name: "",
-        description: "",
         released: "",
-        image: "",
         rating: 0,
+        image: "",
         playtime: 0,
-        favorite: false)
+        gameDescription: "",
+        favorite: false
+    )
     
     init(detailUseCase: GameDetailUseCase) {
         self.detailUseCase = detailUseCase

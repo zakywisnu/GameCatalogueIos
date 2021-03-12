@@ -17,7 +17,7 @@ class FavoritePresenter: ObservableObject {
     @Published var isLoading = false
     @Published var isError = false
     @Published var errorMessage = ""
-    @Published var game: [GameDetailModel] = []
+    @Published var game: [GameModel] = []
     
     init(favoriteUseCase: FavoriteUseCase) {
         self.favoriteUseCase = favoriteUseCase
@@ -40,7 +40,7 @@ class FavoritePresenter: ObservableObject {
     }
     
     func linkBuilder<Content: View>(
-        for game: GameDetailModel,
+        for game: GameModel,
         @ViewBuilder content: () -> Content
     ) -> some View {
         NavigationLink(destination: router.makeDetailView(for: game)){

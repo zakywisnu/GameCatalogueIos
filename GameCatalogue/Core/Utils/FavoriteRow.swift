@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct FavoriteRow: View {
-    var game: GameDetailModel
+    var game: GameModel
     var body: some View{
         ZStack {
             WebImage(url: URL(string: game.image))
